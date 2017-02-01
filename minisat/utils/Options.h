@@ -20,6 +20,8 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
 #ifndef Minisat_Options_h
 #define Minisat_Options_h
 
+#include <iomanip>
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -282,15 +284,18 @@ class Int64Option : public Option
         if (range.begin == INT64_MIN)
             fprintf(stderr, "imin");
         else
-            fprintf(stderr, "%4" PRIi64, range.begin);
+            //fprintf(stderr, "%4" PRIi64, range.begin);
+            std::cerr << std::setw(4) << range.begin;
 
         fprintf(stderr, " .. ");
         if (range.end == INT64_MAX)
             fprintf(stderr, "imax");
         else
-            fprintf(stderr, "%4" PRIi64, range.end);
+            //fprintf(stderr, "%4" PRIi64, range.end);
+            std::cerr << std::setw(4) << range.end;
 
-        fprintf(stderr, "] (default: %" PRIi64 ")\n", value);
+        std::cerr << "] (default: " << value << ")" << std::endl;
+        //fprintf(stderr, "] (default: %" PRIi64 ")\n", value);
         if (verbose){
             fprintf(stderr, "\n        %s\n", description);
             fprintf(stderr, "\n");
